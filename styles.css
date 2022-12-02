@@ -58,11 +58,15 @@ input{
     color: var(--font-color);
     border-radius: 0.4rem;
 }
-
+.output{
+    margin-top: 1rem;
+    font-size: large;
+    font-weight: 400;
+    color: white;
+}
 
 
 footer {
-    margin-top: 1rem;
     display: block;
     position: relative;
     bottom: 0px;
