@@ -177,23 +177,28 @@ const output = document.querySelector(".output");
 
 
 function clickHandler(){
-    var stringDate = birthDate.value.split('-');
-    var date = {
-        day : Number(stringDate[2]),
-        month : Number(stringDate[1]),
-        year : Number(stringDate[0])
-    };
-    
-    if(checkAllFormats(date)){
-        output.innerText = "Yay! Your birthday is palindrome!";
+    if(birthDate.value){
+        var stringDate = birthDate.value.split('-');
+        var date = {
+            day : Number(stringDate[2]),
+            month : Number(stringDate[1]),
+            year : Number(stringDate[0])
+        };
+        
+        if(checkAllFormats(date)){
+            output.innerText = "Yay! Your birthday is palindrome!";
+        }
+        else{
+            var prevPalindromDate = findPreviousPalindrom(date);
+            var nextPalindromDate = findNextPalindrom(date);
+            
+            var nearestPalindromDate = prevPalindromDate[0]<nextPalindromDate[0] ? prevPalindromDate : nextPalindromDate;
+            
+            output.innerText = `The nearest palindrome date is ${nearestPalindromDate[1].day}-${nearestPalindromDate[1].month}-${nearestPalindromDate[1].year}, you missed by ${nearestPalindromDate[0]} days.`
+        }
     }
     else{
-        var prevPalindromDate = findPreviousPalindrom(date);
-        var nextPalindromDate = findNextPalindrom(date);
-        
-        var nearestPalindromDate = prevPalindromDate[0]<nextPalindromDate[0] ? prevPalindromDate : nextPalindromDate;
-        
-        output.innerText = `The nearest palindrome date is ${nearestPalindromDate[1].day}-${nearestPalindromDate[1].month}-${nearestPalindromDate[1].year}, you missed by ${nearestPalindromDate[0]} days.`
+        output.innerText = "Hey! Enter your birthdate to proceed!";
     }
 
 }
